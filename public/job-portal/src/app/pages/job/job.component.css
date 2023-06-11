@@ -1,0 +1,9 @@
+.title {
+  font-size: 30px;
+}
+
+table td {
+  padding-right: 20px;
+  max-width: 400px;
+  vertical-align: top;
+}

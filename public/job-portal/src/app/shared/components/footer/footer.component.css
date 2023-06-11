@@ -1,0 +1,13 @@
+.footer {
+  height: 60px;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer,
+.footer * {
+  color: #000;
+  font-size: 13px;
+}

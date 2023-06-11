@@ -1,0 +1,8 @@
+button {
+  border-radius: 8px !important;
+}
+
+button:disabled {
+  opacity: 0.1;
+  background-color: gray !important;
+}

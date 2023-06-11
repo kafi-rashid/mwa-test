@@ -1,0 +1,27 @@
+<div>
+  <p class="title">
+    {{ job.title }}
+  </p>
+  <table>
+    <tr>
+      <td>Job Description</td>
+      <td>: {{ job.description }}</td>
+    </tr>
+    <tr>
+      <td>Office Location</td>
+      <td>: {{ job.location.lat }}, {{ job.location.lng }}</td>
+    </tr>
+    <tr>
+      <td>Salary</td>
+      <td>: {{ job.salary }}</td>
+    </tr>
+    <tr>
+      <td>Experience</td>
+      <td>: {{ job.experience }} year(s)</td>
+    </tr>
+    <tr>
+      <td>Skills Required</td>
+      <td>: {{ job.skills.join(", ") }}</td>
+    </tr>
+  </table>
+</div>

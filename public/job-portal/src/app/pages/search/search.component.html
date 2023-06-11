@@ -1,0 +1,32 @@
+<div>
+  <p class="title">Search Jobs</p>
+
+  <div>
+    <form class="form-group" 
+      #searchForm="ngForm"
+      (ngSubmit)="searchJob(searchForm)">
+      <input class="form-control" 
+        name="search"
+        [(ngModel)]="search"
+        placeholder="Search by skill"/>
+    </form>
+  </div>
+
+  <ul class="mt-4">
+    <li *ngFor="let job of jobs;">
+      <a routerLink="/jobs/{{ job._id }}">
+        {{ job.title }}
+      </a>
+    </li>
+  </ul>
+
+  <div class="pt-3"
+    *ngIf="jobs && jobs.length > 0">
+    <button class="btn btn-dark me-4"
+      [disabled]="disableBackward()"
+      (click)="prev()">Prev</button>
+    <button class="btn btn-dark"
+      [disabled]="disableForward()"
+      (click)="next()">Next</button>
+  </div>
+</div>
