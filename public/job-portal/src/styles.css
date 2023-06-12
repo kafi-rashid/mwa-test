@@ -35,3 +35,11 @@ textarea {
   width: 100%;
   max-width: 400px;
 }
+
+input:read-only,
+textarea:read-only {
+  background-color: transparent !important;
+  color: #fff;
+  padding: 0;
+  outline: none !important;
+}

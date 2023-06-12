@@ -46,7 +46,7 @@ import { RegisterComponent } from './pages/register/register.component';
       },
       {
         path: "jobs/:jobId",
-        component: JobComponent
+        component: AddJobComponent
       },
       {
         path: "login",

@@ -34,4 +34,8 @@ export class JobService {
   deleteJobById(jobId: string): Observable<Job> {
     return this._http.delete<Job>(this.baseUrl + "/" + jobId);
   }
+
+  updateJob(jobId: string, job: Job): Observable<Job> {
+    return this._http.put<Job>(this.baseUrl + "/" + jobId, job, { headers: this.header });
+  }
 }

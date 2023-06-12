@@ -1,4 +1,9 @@
-<p class="title">Add New Job</p>
+<p class="title">
+  {{ isUpdating ? "Update Job Post" : ( isViewing ? "Job Details" : "Add New Job" ) }} &nbsp;
+  <button *ngIf="isViewing && isLoggedIn"
+    class="btn btn-sm btn-warning mb-2"
+      (click)="editPost()">Edit</button>
+</p>
 
 <div>
   <form [formGroup]="newJob" (ngSubmit)="addJob()">
@@ -7,6 +12,7 @@
       class="form-control mb-3"
       placeholder="Job title"
       formControlName="title"
+      [readOnly]="isViewing"
       required/>
     
     <label class="mb-2">Job Description</label>
@@ -14,21 +20,26 @@
       class="form-control mb-3"
       placeholder="Write here"
       formControlName="description"
+      [readOnly]="isViewing"
       required>
     </textarea>
 
-    <label class="mb-2">Salary</label>
-    <input type="number"
-      class="form-control mb-3"
-      placeholder="Enter salary"
-      formControlName="salary"
-      required/>
+    <div *ngIf="isLoggedIn">
+      <label class="mb-2">Salary</label>
+      <input type="number"
+        class="form-control mb-3"
+        placeholder="Enter salary"
+        formControlName="salary"
+        [readOnly]="isViewing"
+        required/>
+    </div>
 
     <label class="mb-2">Experience (Year)</label>
     <input type="number"
       class="form-control mb-3"
       placeholder="Example: 2"
       formControlName="experience"
+      [readOnly]="isViewing"
       required/>
 
     <label class="mb-2">Job Location</label>
@@ -39,11 +50,13 @@
         class="form-control mb-3 me-4"
         placeholder="Latitude"
         formControlName="lat"
+        [readOnly]="isViewing"
         required/>
       <input type="number"
         class="form-control mb-3"
         placeholder="Longitude"
         formControlName="lng"
+        [readOnly]="isViewing"
         required/>
         
     </div>
@@ -53,10 +66,22 @@
       class="form-control mb-3"
       placeholder="Example: Java, HTML"
       formControlName="skills"
+      [readOnly]="isViewing"
       required/>
     
-    <button type="submit"
-      class="btn btn-primary mt-2 mb-3"
-      [disabled]="newJob.invalid">Add Job</button>
+    <button
+      *ngIf="!isViewing && isLoggedIn"
+      class="btn btn-primary mt-2 mb-3 me-3"
+      [disabled]="newJob.invalid">
+        {{ isUpdating ? "Update Job" : "Add Job" }}
+    </button>
+    <button
+      *ngIf="!isViewing && isLoggedIn && isUpdating"
+      class="btn btn-danger mt-2 mb-3"
+      (click)="deleteJob()">
+      Delete
+    </button>
   </form>
+
+  
 </div>
