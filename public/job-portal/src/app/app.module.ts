@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { JobsComponent } from './pages/jobs/jobs.component';
-import { JobComponent } from './pages/job/job.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
@@ -21,7 +20,6 @@ import { RegisterComponent } from './pages/register/register.component';
     AppComponent,
     HomeComponent,
     JobsComponent,
-    JobComponent,
     HeaderComponent,
     FooterComponent,
     ProfileComponent,
