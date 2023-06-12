@@ -2,13 +2,72 @@
   <p class="title">Search Jobs</p>
 
   <div>
-    <form class="form-group" 
+    <form class="form-group input-group d-flex" 
       #searchForm="ngForm"
       (ngSubmit)="searchJob(searchForm)">
-      <input class="form-control" 
+      <input class="form-control me-3" 
         name="search"
         [(ngModel)]="search"
         placeholder="Search by skill"/>
+
+      <button class="btn btn-primary">
+        Search
+      </button>
+    </form>
+  </div>
+
+  <div class="mt-4">
+    <p>Search by Location</p>
+    <form class="form-group" 
+      #searchFormByLocation="ngForm"
+      (ngSubmit)="searchJobByLocation(searchFormByLocation)">
+
+      <div class="input-group mb-3">
+        <input class="form-control me-4" 
+          name="lat"
+          [(ngModel)]="lat"
+          placeholder="Lat"/>
+        <input class="form-control" 
+          name="lng"
+          [(ngModel)]="lng"
+          placeholder="Lng"/>
+      </div>
+
+      <div class="input-group">
+        <input class="form-control me-4" 
+          name="min"
+          [(ngModel)]="min"
+          placeholder="Min distance"/>
+        <input class="form-control" 
+          name="max"
+          [(ngModel)]="max"
+          placeholder="Max distance"/>
+      </div>
+
+      <button class="btn btn-primary mt-3">
+        Search
+      </button>
+    </form>
+
+
+  <div class="mt-4">
+    <p>Filter by Date</p>
+    <form class="form-group" 
+      #filterByDateForm="ngForm"
+      (ngSubmit)="filterByDate(filterByDateForm)">
+
+      <div class="input-group mb-3">
+        <input class="form-control me-3" 
+          type="date"
+          name="maxDate"
+          [(ngModel)]="maxDate"
+          placeholder="Select max date"/>
+
+        <button class="btn btn-primary">
+          Search
+        </button>
+      </div>
+
     </form>
   </div>
 

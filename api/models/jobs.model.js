@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
 
 const locationSchema = mongoose.Schema({
-  lat: {
-    type: Number,
-    required: [true, "Lattitude is required!"]
-  },
-  lng: {
-    type: Number,
-    required: [true, "Longitude is required!"]
+  coordinates: {
+    type: [Number],
+    index: "2dsphere"
   }
 })
 

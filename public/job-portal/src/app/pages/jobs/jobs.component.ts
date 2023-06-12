@@ -16,7 +16,7 @@ export class JobsComponent implements OnInit {
   
   search: string = "";
   offset: number = 0;
-  count: number = 10;
+  count: number = 5;
 
   query: string = "";
 
@@ -24,7 +24,6 @@ export class JobsComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit(): void {
-    this.getJobs();
     this.getJobCount();
   }
 
@@ -40,6 +39,9 @@ export class JobsComponent implements OnInit {
     if (this.count) {
       query += "&count=" + this.count;
     }
+
+    console.log(this.totalJob, query);
+    
     this._jobService.getJobs(query).subscribe({
       next: (jobs: any) => {
         if (jobs.status === 200) {
@@ -59,6 +61,7 @@ export class JobsComponent implements OnInit {
       next: (response: any) => {
         if (response.status === 200) {
           this.totalJob = response.data;
+          this.getJobs();
         }
       },
       error: (error) => {
@@ -72,16 +75,22 @@ export class JobsComponent implements OnInit {
   }
   
   disableForward(): boolean {
-    return (this.offset + this.count) >= this.totalJob;
+    return (+this.offset + +this.count) >= this.totalJob;
   }
   
   prev() {
-    this.offset -= this.count;
+    this.offset -= +this.count;
     this.getJobs();
   }
   
   next() {
-    this.offset += this.count;
+    this.offset += +this.count;
+    this.getJobs();
+  }
+
+  perPage(event: any) {
+    this.offset = 0;
+    this.count = event.target.value;
     this.getJobs();
   }
 

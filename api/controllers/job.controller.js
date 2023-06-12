@@ -10,19 +10,19 @@ let response = {
 const getJobs = function(req, res) {
   let query = {};
   let offset = 0;
-  let perPage = 10;
+  let count = 10;
   if (req.query.search) {
     query = { "skills": { $regex: new RegExp(req.query.search, "i") } };
   }
   if (req.query.offset) {
     offset = req.query.offset;
   }
-  if (req.query.perPage) {
-    perPage = req.query.perPage <= 10 ? req.query.perPage : 10;
+  if (req.query.count) {
+    count = req.query.count;
   }
   Job.find(query)
     .skip(offset)
-    .limit(perPage)
+    .limit(count)
     .exec()
     .then((jobs) => {
       if (jobs && jobs.length > 0) {
@@ -163,6 +163,111 @@ const getTotalJob = function(req, res) {
     });
 }
 
+const searchJobByLocation = function(req, res) {
+  const lat = parseFloat(req.query.lat);
+  const lng = parseFloat(req.query.lng);
+  let offset = 0;
+  let count = 10;
+  let min = 0;
+  let max = 10000;
+
+  const point = {
+    type: "Point",
+    coordinates: [lng, lat]
+  };
+
+  if (req.query.offset) {
+    offset = parseInt(req.query.offset);
+  }
+  if (req.query.count) {
+    count = parseInt(req.query.count);
+  }
+  if (req.query.min) {
+    min = parseInt(req.query.min);
+  }
+  if (req.query.max) {
+    max = parseInt(req.query.max);
+  }
+
+  const query = {
+    "location.coordinates": {
+      $near: {
+        $geometry: point,
+        $maxDistance: parseFloat(max),
+        $minDistance: parseFloat(min)
+      }
+    }
+  };
+
+  Job.find(query)
+    .skip(offset)
+    .limit(count)
+    .exec()
+    .then((jobs) => {
+      if (jobs && jobs.length > 0) {
+        response.status = 200;
+        response.data = jobs;
+        response.message = jobs.length + " job(s) found!";  
+      } else {
+        response.status = 404;
+        response.data = null;
+        response.message = "No jobs found!";  
+      }
+    })
+    .catch((error) => {
+      response.status = 500;
+      response.message = error;
+      response.data = null;
+    })
+    .finally(() => {
+      res.status(response.status).json(response);
+    });
+};
+
+const filterByDate = function(req, res) {
+  let offset = 0;
+  let count = 10;
+
+  if (req.query.offset) {
+    offset = parseInt(req.query.offset);
+  }
+  if (req.query.count) {
+    count = parseInt(req.query.count);
+  }
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+  const query = {
+    postDate: {
+      $gte: "2023-01-01"
+    }
+  };
+
+  Job.find(query)
+    .skip(offset)
+    .limit(count)
+    .exec()
+    .then((jobs) => {
+      if (jobs && jobs.length > 0) {
+        response.status = 200;
+        response.data = jobs;
+        response.message = jobs.length + " job(s) found!";  
+      } else {
+        response.status = 404;
+        response.data = null;
+        response.message = "No jobs found!";  
+      }
+    })
+    .catch((error) => {
+      response.status = 500;
+      response.message = error;
+      response.data = null;
+    })
+    .finally(() => {
+      res.status(response.status).json(response);
+    });
+}
+
 module.exports = {
   getJobs,
   addOneJob,
@@ -170,5 +275,7 @@ module.exports = {
   fullUpdateJob,
   partialUpdateJob,
   deleteJobByJobId,
-  getTotalJob
+  getTotalJob,
+  searchJobByLocation,
+  filterByDate
 }

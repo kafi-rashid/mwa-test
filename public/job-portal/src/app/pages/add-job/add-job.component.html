@@ -43,22 +43,21 @@
       required/>
 
     <label class="mb-2">Job Location</label>
-    <div formGroupName="location"
-      class="d-flex input-group">
-      
-      <input type="number"
-        class="form-control mb-3 me-4"
-        placeholder="Latitude"
-        formControlName="lat"
-        [readOnly]="isViewing"
-        required/>
-      <input type="number"
-        class="form-control mb-3"
-        placeholder="Longitude"
-        formControlName="lng"
-        [readOnly]="isViewing"
-        required/>
-        
+    <div formGroupName="location">
+      <div formGroupName="coordinates" class="input-group d-flex">
+        <input type="number"
+          class="form-control mb-3 me-4"
+          placeholder="Latitude"
+          formControlName="0"
+          [readOnly]="isViewing"
+          required/>
+        <input type="number"
+          class="form-control mb-3"
+          placeholder="Longitude"
+          formControlName="1"
+          [readOnly]="isViewing"
+          required/>
+      </div>
     </div>
 
     <label class="mb-2">Skills (separate by comma)</label>

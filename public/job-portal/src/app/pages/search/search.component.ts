@@ -16,6 +16,12 @@ export class SearchComponent {
   currentPage: number = 0;
   
   search: string = "";
+  lat!: number;
+  lng!: number;
+  min!: number;
+  max!: number;
+  maxDate!: Date;
+  
   offset: number = 0;
   count: number = 10;
 
@@ -39,6 +45,41 @@ export class SearchComponent {
     }
   }
 
+  searchJobByLocation(searchFormByLocation: NgForm) {
+    let query = "";
+    if (this.lat && this.lat) {
+      query += "lat=" + this.lat;
+    }
+    if (this.lng && this.lng) {
+      query += "&lng=" + this.lng;
+    }
+    if (this.min && this.min) {
+      query += "&min=" + this.min;
+    }
+    if (this.max && this.max) {
+      query += "&max=" + this.max;
+    }
+    if (this.offset) {
+      query += "&offset=" + this.offset;
+    }
+    if (this.count) {
+      query += "&count=" + this.count;
+    }
+    this._jobService.searchJobByLocation(query).subscribe({
+      next: (jobs: any) => {
+        if (jobs.status === 200) {
+          this.jobs = jobs.data;
+        } else {
+          this.jobs = [];
+        }
+      },
+      error: (error) => {
+        this.jobs = [];
+        console.log("Error from jobs", error);
+      }
+    });
+  }
+
   getJobs() {
     let query = "";
     if (this.search && this.search.trim().length > 0) {
@@ -59,9 +100,14 @@ export class SearchComponent {
         }
       },
       error: (error) => {
+        this.jobs = [];
         console.log("Error from jobs", error);
       }
     });
+  }
+
+  filterByDate(filterByDateForm: NgForm) {
+    console.log(filterByDateForm.value.maxDate);
   }
 
   getJobCount() {

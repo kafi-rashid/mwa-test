@@ -11,6 +11,5 @@ export class Job {
 
 export class Location {
   "_id": string;
-  "lat": number;
-  "lng": number;
+  "coordinates": [number];
 }

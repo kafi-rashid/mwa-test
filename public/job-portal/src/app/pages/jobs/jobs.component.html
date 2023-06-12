@@ -8,13 +8,48 @@
     </li>
   </ul>
 
-  <div class="pt-3"
+  <div class="pt-3 d-flex"
     *ngIf="jobs && jobs.length > 0">
-    <button class="btn btn-dark me-4"
+
+    <div class="me-3 d-flex">
+      <p class="no-wrap p-0 m-0 pt-1 pe-4">Per Page: </p>
+      <select class="form-control" (change)="perPage($event)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+
+    <button class="btn btn-dark me-3"
       [disabled]="disableBackward()"
       (click)="prev()">Prev</button>
     <button class="btn btn-dark"
       [disabled]="disableForward()"
       (click)="next()">Next</button>
+  </div>
+
+  <div class="me-3 mt-3 d-flex" *ngIf="jobs && jobs.length > 0">
+    <p class="no-wrap p-0 m-0 pe-4">Per Page: </p>
+    <input type="radio"
+      id="radio_5"
+      name="perPage"
+      value="5"
+      (change)="perPage($event)"
+      [checked]="count === 5"/>
+    <label class="ms-2 me-4" for="radio_5">5</label>
+    <input type="radio"
+      id="radio_10"
+      name="perPage"
+      value="10"
+      (change)="perPage($event)"
+      [checked]="count=== 10"/>
+    <label class="ms-2 me-4" for="radio_10">10</label>
+    <input type="radio"
+      id="radio_20"
+      name="perPage"
+      value="20"
+      (change)="perPage($event)"
+      [checked]="count=== 20"/>
+    <label class="ms-2 me-4" for="radio_20">20</label>
   </div>
 </div>

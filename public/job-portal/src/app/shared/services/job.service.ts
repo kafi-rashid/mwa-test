@@ -38,4 +38,8 @@ export class JobService {
   updateJob(jobId: string, job: Job): Observable<Job> {
     return this._http.put<Job>(this.baseUrl + "/" + jobId, job, { headers: this.header });
   }
+
+  searchJobByLocation(params: string): Observable<Job[]> {
+    return this._http.get<Job[]>(this.baseUrl + "/search?" + params);
+  }
 }

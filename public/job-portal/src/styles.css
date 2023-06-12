@@ -11,12 +11,21 @@ button:disabled {
   font-size: 30px;
 }
 
-input,
+.no-wrap {
+  white-space: nowrap;
+}
+
+select,
+input:not([type="radio"]),
 textarea {
   width: 100%;
   max-width: 400px;
   border-radius: 8px !important;
   height: 40px;
+}
+
+input[type="radio"] {
+  width: 20px !important;
 }
 
 textarea {

@@ -39,8 +39,10 @@ export class AddJobComponent implements OnInit {
       salary: ["", Validators.required],
       experience: ["", Validators.required],
       location: this.formBuilder.group({
-        lat: ["", Validators.required],
-        lng: ["", Validators.required]
+        coordinates: this.formBuilder.array([
+          ["", Validators.required],
+          ["", Validators.required]
+        ])
       }),
       skills: ["", Validators.required],
       postDate: [new Date()]
