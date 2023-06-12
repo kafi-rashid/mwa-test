@@ -23,7 +23,10 @@ const jobSchema = mongoose.Schema({
   },
   experience: Number,
   skills: [String],
-  postDate: Date
+  postDate: {
+    type: Date,
+    index: true
+  }
 })
 
 mongoose.model("Job", jobSchema, "jobs");

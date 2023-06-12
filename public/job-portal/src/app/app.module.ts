@@ -12,7 +12,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './pages/search/search.component';
-import { AddJobComponent } from './pages/add-job/add-job.component';
+import { JobComponent } from './pages/job/job.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { RegisterComponent } from './pages/register/register.component';
     ProfileComponent,
     LoginComponent,
     SearchComponent,
-    AddJobComponent,
+    JobComponent,
     RegisterComponent
   ],
   imports: [
@@ -44,7 +44,7 @@ import { RegisterComponent } from './pages/register/register.component';
       },
       {
         path: "jobs/:jobId",
-        component: AddJobComponent
+        component: JobComponent
       },
       {
         path: "login",
@@ -64,7 +64,7 @@ import { RegisterComponent } from './pages/register/register.component';
       },
       {
         path: "add-job",
-        component: AddJobComponent
+        component: JobComponent
       },
       {
         path: "**",

@@ -5,11 +5,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { JobService } from 'src/app/shared/services/job.service';
 
 @Component({
-  selector: 'app-add-job',
-  templateUrl: './add-job.component.html',
-  styleUrls: ['./add-job.component.css']
+  selector: 'app-job',
+  templateUrl: './job.component.html',
+  styleUrls: ['./job.component.css']
 })
-export class AddJobComponent implements OnInit {
+export class JobComponent implements OnInit {
 
   newJob!: FormGroup;
   isUpdating: boolean = false;

@@ -234,15 +234,18 @@ const filterByDate = function(req, res) {
   if (req.query.count) {
     count = parseInt(req.query.count);
   }
-  const sixMonthsAgo = new Date();
+  
+  const sixMonthsAgo = new Date(req.query.maxDate);
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-
   const query = {
     postDate: {
-      $gte: "2023-01-01"
+      $gte: sixMonthsAgo,
+      $lt: new Date()
     }
   };
 
+  console.log(req.query.maxDate, query);
+  
   Job.find(query)
     .skip(offset)
     .limit(count)
