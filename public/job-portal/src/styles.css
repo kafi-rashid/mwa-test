@@ -6,3 +6,32 @@ button:disabled {
   opacity: 0.1;
   background-color: gray !important;
 }
+
+.title {
+  font-size: 30px;
+}
+
+input,
+textarea {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px !important;
+  height: 40px;
+}
+
+textarea {
+  height: unset;
+}
+
+.radius {
+  border-radius: 8px !important;
+}
+
+.color-red {
+  color: red;
+}
+
+.input-group {
+  width: 100%;
+  max-width: 400px;
+}

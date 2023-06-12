@@ -11,8 +11,10 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './pages/search/search.component';
+import { AddJobComponent } from './pages/add-job/add-job.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,15 @@ import { SearchComponent } from './pages/search/search.component';
     FooterComponent,
     ProfileComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    AddJobComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: "",
@@ -54,6 +59,14 @@ import { SearchComponent } from './pages/search/search.component';
       {
         path: "search",
         component: SearchComponent
+      },
+      {
+        path: "register",
+        component: RegisterComponent
+      },
+      {
+        path: "add-job",
+        component: AddJobComponent
       },
       {
         path: "**",

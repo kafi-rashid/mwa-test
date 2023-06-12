@@ -9,6 +9,9 @@ import { Job } from '../models/job.model';
 export class JobService {
 
   baseUrl = "http://localhost:3000/jobs";
+  header = {
+    "content-type": "application/json"
+  }
 
   constructor(private _http: HttpClient) { }
 
@@ -22,5 +25,13 @@ export class JobService {
 
   getJobCount(search: string): Observable<Number> {
     return this._http.get<Number>(this.baseUrl + "/count?search=" + search);
+  }
+
+  addJob(job: Job): Observable<Job> {
+    return this._http.post<Job>(this.baseUrl, job, { headers: this.header })
+  }
+
+  deleteJobById(jobId: string): Observable<Job> {
+    return this._http.delete<Job>(this.baseUrl + "/" + jobId);
   }
 }

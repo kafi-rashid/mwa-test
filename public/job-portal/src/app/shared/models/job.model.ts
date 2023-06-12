@@ -6,7 +6,7 @@ export class Job {
   "description": string;
   "experience": number;
   "skills": [string];
-  "postDate": string;
+  "postDate": Date;
 }
 
 export class Location {

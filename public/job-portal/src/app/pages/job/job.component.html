@@ -13,7 +13,8 @@
     </tr>
     <tr>
       <td>Salary</td>
-      <td>: {{ job.salary }}</td>
+      <td *ngIf="isLoggedIn">: {{ job.salary | currency }}</td>
+      <td *ngIf="!isLoggedIn">: <span class="color-red">Log in to see salary!</span></td>
     </tr>
     <tr>
       <td>Experience</td>
@@ -23,5 +24,15 @@
       <td>Skills Required</td>
       <td>: {{ job.skills.join(", ") }}</td>
     </tr>
+    <tr>
+      <td>Posted at</td>
+      <td>: {{ job.postDate | date: "dd MMMM YYYY" }}</td>
+    </tr>
   </table>
+
+  <button *ngIf="isLoggedIn"
+    class="btn btn-danger mt-4"
+    (click)="deleteJob(job._id)">
+    Delete
+  </button>
 </div>

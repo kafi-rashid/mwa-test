@@ -1,6 +1,29 @@
+<p class="title">Log In</p>
+
 <div class="login">
-  <form class="form-group">
-    <input type="text" class="form-control" placeholder="Enter username"/>
-    <input type="text" class="form-control" placeholder="Enter password"/>
+  <form class="form-group"
+    #loginForm="ngForm"
+    (ngSubmit)="login(loginForm)">
+    <label class="mb-2">
+      Username
+    </label>
+    <input type="text"
+      class="form-control mb-3"
+      placeholder="Enter username"
+      name="username"
+      [(ngModel)]="username"/>
+
+    <label class="mb-2">Password</label>
+    <input type="password"
+      class="form-control"
+      placeholder="Enter password"
+      name="password"
+      [(ngModel)]="password"/>
+
+    <p class="bg-danger radius p-3 mt-3" *ngIf="isInvalid">
+      Username and password doesn't match!
+    </p>
+
+    <button class="btn btn-primary mt-3">Log In</button>
   </form>
 </div>
