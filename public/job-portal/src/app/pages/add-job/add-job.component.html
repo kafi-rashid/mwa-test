@@ -18,14 +18,14 @@
     </textarea>
 
     <label class="mb-2">Salary</label>
-    <input type="text"
+    <input type="number"
       class="form-control mb-3"
       placeholder="Enter salary"
       formControlName="salary"
       required/>
 
     <label class="mb-2">Experience (Year)</label>
-    <input type="text"
+    <input type="number"
       class="form-control mb-3"
       placeholder="Example: 2"
       formControlName="experience"
@@ -34,16 +34,18 @@
     <label class="mb-2">Job Location</label>
     <div formGroupName="location"
       class="d-flex input-group">
-      <input type="text"
+      
+      <input type="number"
         class="form-control mb-3 me-4"
         placeholder="Latitude"
         formControlName="lat"
         required/>
-      <input type="text"
+      <input type="number"
         class="form-control mb-3"
         placeholder="Longitude"
         formControlName="lng"
         required/>
+        
     </div>
 
     <label class="mb-2">Skills (separate by comma)</label>
@@ -54,6 +56,7 @@
       required/>
     
     <button type="submit"
-      class="btn btn-primary mt-2">Add Job</button>
+      class="btn btn-primary mt-2 mb-3"
+      [disabled]="newJob.invalid">Add Job</button>
   </form>
 </div>
